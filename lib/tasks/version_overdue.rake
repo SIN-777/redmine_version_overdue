@@ -4,7 +4,7 @@ namespace :redmine do
 
     namespace :version_overdue do
 
-      desc 'Run the Continous Integration tests for Redmine'
+      desc "Update lastweek version-overdued issue's custom_field values. OPTIONS => [<custom_field_id>, <custom_field_value>]."
       task :update_lastweek_issues_custom_field, [:custom_field_id, :custom_field_value] => :environment do |task, args|
         unless CustomField.find(:first, :conditions => ['id = ?', args.custom_field_id.to_i])
           puts 'custom field not found'
