@@ -1,16 +1,20 @@
-
 namespace :redmine do
+
   namespace :plugins do
+
     namespace :version_overdue do
+
       desc 'Run the Continous Integration tests for Redmine'
-      task :handle_last_week_issues => :environment do
-        last_week_versions = \
-          Version.find(:all, :conditions => ['effective_date between ? and ?',
-                                             1.week.ago(Date.today).beginning_of_week,
-                                             1.week.ago(Date.today).end_of_week])
-        target_issues = Issue.find(:all, :conditions => ['fixed_version_id in (?)', last_week_versions.map(&:id)])
-        # do something with target_issues
+      task :update_lastweek_issues_custom_field, [:custom_field_id, :custom_field_value] => :environment do |task, args|
+        unless CustomField.find(:first, :conditions => ['id = ?', args.custom_field_id.to_i])
+          puts 'custom field not found'
+          exit
+        end
+        Issue.update_lastweek_issues_custom_field(args.custom_field_id.to_i, args.custom_field_value)
       end
+
     end
+
   end
+
 end
