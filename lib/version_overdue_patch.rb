@@ -1,6 +1,5 @@
 module VersionOverduePatch
   def self.included(klass)
-    klass.send(:extend, ClassMethods)
     klass.send(:include, InstanceMethods)
     klass.class_eval do
       alias_method_chain :css_classes, :version_overdue
