@@ -9,7 +9,7 @@ module VersionOverduePatch
   module InstanceMethods
     def css_classes_with_version_overdue
       s = css_classes_without_version_overdue
-      s << ' version-overdue' if fixed_version.present? && fixed_version.due_date < Date.today && !status.is_closed?
+      s << ' version-overdue' if fixed_version.present? && fixed_version.due_date.present? && fixed_version.due_date < Date.today && !status.is_closed?
       s
     end
   end
