@@ -2,11 +2,11 @@ require 'redmine'
 
 Redmine::Plugin.register :redmine_version_overdue do
   name 'Redmine Version Overdue plugin'
-  author 'Author name'
-  description 'This is a plugin for Redmine'
+  author 'Shingo Sekiguchi'
+  description 'Set "version-overdue" class to version-overdued issue in list'
   version '0.0.1'
-  url 'http://example.com/path/to/plugin'
-  author_url 'http://example.com/about'
+  url 'https://github.com/SIN-777/redmine_version_overdue'
+  author_url ''
 end
 
 require File.dirname(__FILE__) + '/lib/version_overdue_patch.rb'
